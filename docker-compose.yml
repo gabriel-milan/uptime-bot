@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  server:
+    restart: unless-stopped
+    build:
+      context: ./server
+    ports:
+      - 8001:80
+    volumes:
+      - "/home/gabriel-milan/GIT_REPOS/uptime-bot/server_list.json:/app/server_list.json:rw"
+  client:
+    restart: unless-stopped
+    build:
+      context: ./client
+    ports:
+      - 80:80
