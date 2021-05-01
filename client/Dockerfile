@@ -1,13 +1,15 @@
-FROM node:lts-alpine as build-stage
+FROM node:lts as build
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci 
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm ci
 RUN npm audit fix
 COPY . ./
-RUN npm run lint
 RUN npm run build
 
-FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
