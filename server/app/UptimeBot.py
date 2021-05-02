@@ -97,6 +97,19 @@ class UptimeBot:
         """Get a single server information"""
         return self._servers[id]
 
+    def get_custom_server(self, ip, port):
+        """Get a custom server information"""
+        # Create an empty dictionary
+        info = {}
+        # Add IP attribute
+        info["ip"] = ip
+        # Add port attribute
+        info["port"] = port
+        # Add status
+        info["state"] = is_up(ip, port)
+        # Return this information
+        return info
+
     def update_server_loop(self, server_id):
         """Loop function for updating server status"""
 
