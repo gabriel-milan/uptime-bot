@@ -1,0 +1,16 @@
+{
+  "servers": [
+    {
+      "ip": "login.lps.ufrj.br",
+      "port": 22
+    },
+    {
+      "ip": "www.lps.ufrj.br",
+      "port": 443
+    },
+    {
+      "ip": "poli.ufrj.br",
+      "port": 80
+    }
+  ]
+}
