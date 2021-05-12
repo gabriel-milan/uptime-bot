@@ -66,7 +66,7 @@ class Server(Resource):
 class ServerList(Resource):
     # ServerList
 
-    decorators = [limiter.limit("2/minute")]
+    decorators = [limiter.limit("60/minute")]
 
     # [GET] => Shows a list of all servers
     def get(self):
